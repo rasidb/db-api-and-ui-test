@@ -1,6 +1,7 @@
 package com.sqlNotes;
 
 import com.utilities.DBUtils;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -52,6 +53,54 @@ public class SQL_Notes1 {
         }
 
         // Veritabanı bağlantısını kapat
+        DBUtils.destroy();
+    }
+
+    @Test
+    public void distinct(){
+        //birbirinden farklı job_id'leri getir
+
+        //db bağlantısı kur
+        DBUtils.createConnection();
+
+        //sql sorgusunu oluştur
+        String sql ="select distinct job_id " +
+                "from employees";
+
+        //sorgunun sonucunu liste olarak al
+        List<List<Object>> queryResultList = DBUtils.getQueryResultList(sql);
+
+        //birbirinden farklı job_id'leri yazdır
+        for (List<Object> job_id : queryResultList) {
+            System.out.println(job_id);
+
+            //db bağlantısından çık
+            DBUtils.destroy();
+        }
+
+        Assert.assertTrue(queryResultList.size()!=0);
+    }
+    @Test
+    public void practice(){
+        //get me all info who is working as IT _PROG or SA_REP
+
+        //db bağlantısı kur
+        DBUtils.createConnection();
+
+        //sql sorgusunu oluştur
+        String sql ="select * " +
+                "from employees " +
+                "where job_id in ('IT_PROG', 'SA_REP')";
+
+        //sorgu sonucunu liste olarak al
+        List<List<Object>> queryResultList = DBUtils.getQueryResultList(sql);
+
+        for (List<Object> users : queryResultList) {
+            //job_id'nin it_prog ya da sa_rep olduğunu doğrula
+            Assert.assertTrue(users.get(6).equals("IT_PROG") || users.get(6).equals("SA_REP"));
+        }
+
+        //db bağlantısından çık
         DBUtils.destroy();
     }
 }
