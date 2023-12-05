@@ -19,6 +19,17 @@
       <artifactId>ojdbc8</artifactId>
       <version>19.3.0.0</version> <!-- Kullandığınız Oracle sürümüne göre değiştirin -->
     </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>7.1.0</version>
+      <scope>test</scope>
+    </dependency>
+
+
+
   </dependencies>
 
 
