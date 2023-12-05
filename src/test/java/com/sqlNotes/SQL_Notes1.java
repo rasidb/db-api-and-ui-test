@@ -4,6 +4,7 @@ import com.utilities.DBUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -102,5 +103,30 @@ public class SQL_Notes1 {
 
         //db bağlantısından çık
         DBUtils.destroy();
+    }
+    @Test
+    public void practice2(){
+        //how many employees making more than 8000
+        //db bağlantısını yap
+        DBUtils.createConnection();
+        // sql sorgusunu hazırla
+        String sql ="select * " +
+                "from employees " +
+                "where salary >8000";
+        //sql sorgusunu gönder ve bir map olarak depola
+        List<Map<String, Object>> queryResultMap = DBUtils.getQueryResultMap(sql);
+
+        for (Map<String, Object> objects : queryResultMap) {
+            //8000den fazla olduğunu doğrula
+            BigDecimal salary = (BigDecimal) objects.get("SALARY");
+            Assert.assertTrue(salary.compareTo(new BigDecimal(8000))>0);
+        }
+        DBUtils.destroy();
+    }
+
+    @Test
+    public void practice3(){
+        //en fazla maaş alandan en az maaş alana kadar sırala
+
     }
 }
