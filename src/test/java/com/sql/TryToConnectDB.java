@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class TryConnectToDB {
+public class TryToConnectDB {
     @Test
     public void connectingDB() {
         DBUtils.createConnection();
