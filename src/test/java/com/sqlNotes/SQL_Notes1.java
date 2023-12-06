@@ -1,7 +1,6 @@
 package com.sqlNotes;
 
 import com.utilities.DBUtils;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.math.BigDecimal;
