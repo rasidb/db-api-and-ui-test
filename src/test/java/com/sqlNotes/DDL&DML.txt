@@ -33,3 +33,24 @@ CONSTRAINTS
 		*UNIQUE      --> her satır için değer eşsizdir --> email VARCHAR(20) UNIQUE
 		*NOTNULL     --> hücre null olamaz		--> salary INT NOTNULL
 		*CHECK       --> belirli bi koşulu sağlamayan değerleri engeller --> age INT CHECK (age>17)
+
+
+create a table
+
+    Create table PotatoTeam(
+        Emp_ID Integer Primary key,
+        FirstName varchar(30)  not null,
+        LastName varchar (30),
+        JobTitle varchar (20)
+    );
+
+    add a value to the new table
+    insert into (emp_id, firstname, lastname, jobtitle)
+    values(1,'rasid','babamgul','tester')
+
+    how to update data
+
+    update table_name
+    set column1 =value1
+    column2 =value 2
+    where condition

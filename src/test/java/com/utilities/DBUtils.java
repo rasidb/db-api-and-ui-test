@@ -189,4 +189,13 @@ public class DBUtils {
         int rowCount = resultSet.getRow();
         return rowCount;
     }
+
+    public static void executeUpdate(String query) {
+        try {
+            statement = connection.createStatement();
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
