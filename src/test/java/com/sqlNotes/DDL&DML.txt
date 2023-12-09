@@ -1,0 +1,35 @@
+_____________________________________________________________________________________________________
+|    DDL: data definition language                 |           DML: data manipulation language       |
+|    it is used to define data structures          |         it is used to manipulate data itself    |
+|    *CREATE                                       |          *SELECT                                |
+|    *DROP                                         |          *INSERT                                |
+|    *TRUNCATE                                     |          *UPDATE                                |
+|    *ALTER                                        |          *DELETE                                |
+______________________________________________________________________________________________________
+
+
+To create a new table SQL, you use the CREATE TABLE statement
+First, you specify the name of the new table after the CREATE TABLE clause
+
+		CREATE TABLE  tableName
+		(column name DATATYPE constrain);
+
+		CONSTRAIN IS NOT MANDATORY TO GIVE 
+
+There are many datatypes for example:
+		*INT or INTEGER --> it is saying my value is integer   --> age INT
+
+		*VARCHAR(n) or VARCHAR(n) --> it is saying my value length is max n --> surname VARCHAR(25)
+
+	    *DECIMAL(p,s) or NUMERIC(p,s) 	--> kesirli sayılar icin kullanılır p=toplam rakam sayısı, s=ondalık rakamların sayısı --> salary DECIMAL(10,2)
+
+	    *DATE or DATETIME --> used for date and hour informations --> hire_date DATE
+
+	    *BOOLEAN or BIT --> used for boolean values (true or false) --> is_active BOOLEAN
+
+
+CONSTRAINTS
+		*PRIMARY KEY --> her satırdaki değer eşsizdir ve null olamaz --> employee_id INT PRIMARY KEY
+		*UNIQUE      --> her satır için değer eşsizdir --> email VARCHAR(20) UNIQUE
+		*NOTNULL     --> hücre null olamaz		--> salary INT NOTNULL
+		*CHECK       --> belirli bi koşulu sağlamayan değerleri engeller --> age INT CHECK (age>17)
