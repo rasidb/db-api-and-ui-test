@@ -55,6 +55,15 @@ public class SQL_Notes3 {
 
     }
 
+
+    @Test
+    public void addNewColumn(){
+        DBUtils.createConnection();
+        String sql ="alter table sqlNotes3 add salary int not null";
+        DBUtils.executeUpdate(sql);
+        DBUtils.destroy();
+    }
+
     @Test
     public void addSomePeoplesToOurTable(){
        List<String> jobTitles =new ArrayList<>(Arrays.asList("tester","developer","dikisci","manav","fullStack"));
@@ -65,15 +74,17 @@ public class SQL_Notes3 {
         DBUtils.createConnection();
         for (int i = 0; i < 100; i++) {
           String job= jobTitles.get(random.nextInt(4-0+1));
-         String firstName =faker.name().firstName();
-         String lastName=faker.name().lastName();
+         String firstName =faker.name().firstName().replaceAll("'","");
+         String lastName=faker.name().lastName().replaceAll("'","");;
+         int salary = random.nextInt(50000-11400+1);
          id =i+1;
          // emp_id, firstname, lastname, jobtitle
             sql ="insert into sqlNotes3 values(" +
                     id +","+
                     "'"+firstName+"',"+
                     "'"+lastName+"',"+
-                    "'"+job+"'"+
+                    "'"+job+"',"+
+                    salary+
                     ")";
             DBUtils.executeUpdate(sql);
         }
@@ -82,5 +93,7 @@ public class SQL_Notes3 {
         DBUtils.destroy();
 
     }
+
+
 
 }

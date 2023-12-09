@@ -54,3 +54,13 @@ create a table
     set column1 =value1
     column2 =value 2
     where condition
+
+
+
+    ALTER actions
+    The popular actions that we can do with alter keyword
+        ADD COLUMN --> adds column on the table
+        DROP COLUMN --> drops the column to the table
+        RENAME COLUMN --> renames the column name
+        RENAME TO -->renames the table name
+
