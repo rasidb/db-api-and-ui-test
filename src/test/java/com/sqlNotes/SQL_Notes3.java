@@ -1,10 +1,10 @@
 package com.sqlNotes;
 
+import com.github.javafaker.Faker;
 import com.utilities.DBUtils;
 import org.testng.annotations.Test;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class SQL_Notes3 {
@@ -42,7 +42,7 @@ public class SQL_Notes3 {
     @Test
     public void deleteData (){
         String sql ="delete from sqlNotes3 " +
-                "where emp_id =1";
+                "";
         String show ="select * from sqlNotes3 ";
 
         DBUtils.createConnection();
@@ -51,6 +51,34 @@ public class SQL_Notes3 {
         for (List<Object> objects : queryResultList) {
             System.out.println(objects);
         }
+        DBUtils.destroy();
+
+    }
+
+    @Test
+    public void addSomePeoplesToOurTable(){
+       List<String> jobTitles =new ArrayList<>(Arrays.asList("tester","developer","dikisci","manav","fullStack"));
+        Random random=new Random();
+        Faker faker =new Faker();
+        String sql ;
+        int id ;
+        DBUtils.createConnection();
+        for (int i = 0; i < 100; i++) {
+          String job= jobTitles.get(random.nextInt(4-0+1));
+         String firstName =faker.name().firstName();
+         String lastName=faker.name().lastName();
+         id =i+1;
+         // emp_id, firstname, lastname, jobtitle
+            sql ="insert into sqlNotes3 values(" +
+                    id +","+
+                    "'"+firstName+"',"+
+                    "'"+lastName+"',"+
+                    "'"+job+"'"+
+                    ")";
+            DBUtils.executeUpdate(sql);
+        }
+        String show ="select * from sqlNotes3";
+        DBUtils.getQueryResultList(show);
         DBUtils.destroy();
 
     }
