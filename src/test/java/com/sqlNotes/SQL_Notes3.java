@@ -133,6 +133,88 @@ public class SQL_Notes3 {
         DBUtils.destroy();
     }
 
+    @Test
+    public void newDataTables() {
+        // Not: Bu test, users1 ve address1 adında iki tablo oluşturur ve bu tabloları doldurur.
+
+        // users1 tablosunu oluştur
+        String createUserTableSQL = "CREATE TABLE users1 (" +
+                "user_id INT PRIMARY KEY," +
+                "firstname VARCHAR(30) NOT NULL," +
+                "lastname VARCHAR(30) NOT NULL," +
+                "salary INT NOT NULL," +
+                "address_id INT UNIQUE" +
+                ")";
+
+        // Veritabanı bağlantısını kur ve SQL sorgusunu execute et
+        DBUtils.createConnection();
+        DBUtils.executeQuery(createUserTableSQL);
+
+        // address1 tablosunu oluştur
+        String createAddressTableSQL = "CREATE TABLE address1 (" +
+                "address_id INT UNIQUE," +
+                "phoneNumber VARCHAR(20)" +
+                ")";
+
+        // Veritabanı bağlantısını kur ve SQL sorgusunu execute et
+        DBUtils.executeQuery(createAddressTableSQL);
+
+        // Gerekli tablolar için gerekli değişkenleri oluştur
+        int user_id;
+        String firstName;
+        String lastName;
+        int salary;
+        int addressId;
+        String phoneNumber;
+
+        // 100 adet sahte veri ekleyin
+        Random random = new Random();
+        Faker faker = new Faker();
+
+        // Rastgele addressId için bir liste oluştur
+        List<Integer> randomList = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            randomList.add(i + 1);
+        }
+
+        // Veritabanı bağlantısını kur
+        for (int i = 0; i < 100; i++) {
+            user_id = i + 1;
+            firstName = faker.name().firstName().replaceAll("'", "");
+            lastName = faker.name().lastName().replaceAll("'", "");
+            salary = random.nextInt(50001 - 11400) + 11400;
+
+            // Rastgele bir addressId seç
+            int randomIndex = random.nextInt(randomList.size());
+            addressId = randomList.get(randomIndex);
+
+            // Seçilen addressId'yi listeden kaldır
+            randomList.remove(randomIndex);
+
+            // Telefon numarasını sahte veri olarak oluştur
+            phoneNumber = faker.phoneNumber().cellPhone();
+
+            // users1 tablosuna veri ekle
+            DBUtils.executeQuery("INSERT INTO users1 VALUES (" + user_id + ", '" + firstName + "', '" + lastName + "', "
+                    + salary + ", " + addressId + ")");
+
+            // address1 tablosuna veri ekle
+            DBUtils.executeQuery("INSERT INTO address1 VALUES (" + addressId + ", '" + phoneNumber + "')");
+        }
+
+        // Not: users1 ve address1 tablolarını birleştirerek tüm bilgileri getiren SQL sorgusu
+        String getAllInformation = "SELECT users1.*, address1.* FROM users1 JOIN address1 ON users1.address_id = address1.address_id";
+
+        // SQL sorgusunu çalıştır ve sonuçları ekrana yazdır
+        List<List<Object>> queryResultList = DBUtils.getQueryResultList(getAllInformation);
+        for (List<Object> objects : queryResultList) {
+            System.out.println(objects);
+        }
+
+        // Veritabanı bağlantısını kapat
+        DBUtils.destroy();
+    }
+
 
 }
 

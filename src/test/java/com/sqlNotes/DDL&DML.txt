@@ -64,3 +64,25 @@ create a table
         RENAME COLUMN --> renames the column name
         RENAME TO -->renames the table name
 
+
+            how to add column?
+                    alter table sqlNotes3 add column salary int not null;
+
+            how to drop column?
+                    alter table sqlNotes3 drop column salary;
+
+            how to rename column?
+                    alter table sqlNotes3 rename column salary to maas;  // rename keword is change the column name
+                    alter table sqlNotes3 change column salary maas int // when use change keyword we change to our column's dataType
+
+            how to rename the table?
+                    alter table sqlNotes3 rename to sqlNotes4
+
+
+            data yapısını değiştirmeden tüm data verisini silmeye yarar
+                    truncate table sqlNotes3
+
+
+            tüm table' ı silmek için
+                    drop table sqlNotes3
+
