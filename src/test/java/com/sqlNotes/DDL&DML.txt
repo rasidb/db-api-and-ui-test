@@ -44,11 +44,12 @@ create a table
         JobTitle varchar (20)
     );
 
-    add a value to the new table
+    add a value to the new table (tabloya yeni value ekle)
+
     insert into (emp_id, firstname, lastname, jobtitle)
     values(1,'rasid','babamgul','tester')
 
-    how to update data
+    how to update data --> güncelle
 
     update table_name
     set column1 =value1
@@ -88,6 +89,21 @@ create a table
 
 
 
+
+
+            tabloda veri sil
+
+          DELETE FROM address1
+          WHERE address_id = 5;  -->address_id'nin 5 olduğu veriye dair her seyi sil
+
+           veri güncelleme
+
+           UPDATE address1
+           SET phoneNumber = NULL
+           WHERE address_id = 5; --> address_id'si 5 olan verinşn phonenumber'ını null yap
+
+
+
         LEFT JOIN
 
             'LEFT JOIN', iki tabloyu belirli bir koşul içinde birleştiren bir SQL methodudur.
@@ -111,7 +127,51 @@ create a table
 
 
 
+        UNION
+            2 farklı tabloda aynı isimde row varsa bunları sırayla listeler duplicate'ler otomatik kaldırılır
+            select address_id from users1
+            union
+            select address_id from address1
+
+        UNION
+            2 farklı tabloda aynı isimde row varsa bunları sırayla listeler duplicate'ler kaldırılmaz
+            select address_id from users1
+            union all
+            select address_id from address1
+
+        MINUS
+             MINUS sorgusu, iki sorgu arasındaki farkı bulur.
+             İlk sorgunun sonuç kümesinden, ikinci sorgunun sonuç kümesini çıkarır.
+             Bu sorgu, soldaki sorgunun sonuç kümesinde bulunan ancak sağdaki sorgunun sonuç kümesinde bulunmayan kayıtları döndürür.
+
+             select address_id from users1
+             minus
+             select address_id from address1
+
+            size icin
+
+                select count (address_id) from (
+                select address_id from users1
+                minus
+                select address_id from address1
+                )
 
 
+        INTERSECT
+            INTERSECT sorgusu, iki sorgunun kesişimini bulur.
+            İki sorgunun ortak olan sonuç kümesini döndürür.
+            Yani, soldaki sorgunun sonuç kümesinde bulunan ve aynı zamanda sağdaki sorgunun sonuç kümesinde de bulunan kayıtları döndürür.
+
+
+            select address_id from users1
+            intersect
+            select address_id from address1
+
+                size icin
+
+            select count (address_id) from (
+            select address_id from users1
+            intersect
+            select address_id from address1)
 
 

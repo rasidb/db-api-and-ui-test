@@ -66,5 +66,19 @@ public class SQL_JoinTypes {
         }
     }
 
+    @Test
+    public void union_unionAll(){
+        String sql =
+                "select address_id from users1 " +
+                "union " + //duplicate verileri gösterme
+                "select address_id from address1 " +
+                "order by address_id ";
+
+        sql ="select address_id from users1 " +
+                "union all" +//her şeyi göster ve iki tabloyu alt alta sırala
+                "select address_id from address1 " +
+                "order by address_id ";
+    }
+
 
 }
