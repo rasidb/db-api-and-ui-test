@@ -216,6 +216,23 @@ public class SQL_Notes3 {
     }
 
 
+    @Test
+    public void deleteFromData(){
+        DBUtils.createConnection();
+        String sql ;
+
+        List<Integer> delete=new ArrayList<>(Arrays.asList(1,3,5,9,11,22,19));
+        for (Integer integer : delete) {
+            sql = "delete from address1" +
+                    " where address_id = " + integer;
+            DBUtils.executeQuery(sql);
+
+            sql = "delete from users1 " +
+                    " where address_id = " + integer + 3;
+            DBUtils.executeQuery(sql);
+        }
+        DBUtils.destroy();
+    }
 }
 
 

@@ -86,3 +86,32 @@ create a table
             tüm table' ı silmek için
                     drop table sqlNotes3
 
+
+
+        LEFT JOIN
+
+            'LEFT JOIN', iki tabloyu belirli bir koşul içinde birleştiren bir SQL methodudur.
+            İlk belirtilen tablo (sol tablo) baz alınır ve LEFT JOIN ile birleşen tablo,
+            belirtilen koşulu karşılamazsa sol tablodaki verileri gösterirken, sağdaki tabloda null değeri döner.
+            Örneğin:
+                SELECT users1.*, address1.*
+                FROM users1 LEFT JOIN address1 ON users1.address_id = address1.address_id;
+                sorgusu, tüm users1 verilerini gösterirken, address_id'leri eşleşmeyen veriler için users1 tablosu gösterilirken,
+                 address1 tablosunda ilgili sütunlar null değeri alır.
+
+        RIGHT JOIN
+
+            'LEFT JOIN''in tam tersi
+            SELECT users1.*, address1.*
+                            FROM users1 RIGHT JOIN address1 ON users1.address_id = address1.address_id;
+
+        INNER JOIN
+            iki tabloyu birleştirmek için kullanılır sadece belirtilen koşulu sağlayan veriler gösterilir.
+            yani uyuşmayan veriler iki tarafta da gösterilmez
+
+
+
+
+
+
+
