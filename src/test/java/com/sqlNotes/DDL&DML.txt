@@ -175,3 +175,8 @@ create a table
             select address_id from address1)
 
 
+
+        table icinde duplicate isimleri bul
+         select firstname, count(*) from users1
+         group by firstname
+         having count(*)>1
