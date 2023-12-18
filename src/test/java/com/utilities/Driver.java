@@ -47,7 +47,7 @@ public class Driver {
                     options.addArguments("--disable-plugin-discovery");
                     options.addArguments("--disable-internal-flash");
                     WebDriverManager.chromedriver().setup();
-                    driverPool.set(new ChromeDriver(options));
+                    driverPool.set(new ChromeDriver());
                     driverPool.get().manage().window().maximize();
                     driverPool.get().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                     break;
