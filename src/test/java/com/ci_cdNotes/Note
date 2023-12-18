@@ -1,0 +1,17 @@
+Contents
+
+Terminology
+Deployment process
+Pipeline example
+Automation in pipeline
+Jenkins
+
+                                                    smoke test
+     --> basit ve yüzeysel bi testtir. Uygulamanın temel işlevselliği kontrol edilir. Hızlı
+
+                                                    regression test
+    --> Yeni bir özellik eklenmiş veya hata düzeltilmiş olabilir,
+    ancak bu değişikliklerin mevcut diğer özelliklere veya sistem davranışına olumsuz bir etkisi olup olmadığı kontrol edilir
+    Her yeni sürüm ya da güncelleme sonrasında yapılır.
+
+
